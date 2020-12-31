@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">PunchBuggy</string>
+    <string name="red_buggy">Red Punch Buggy</string>
+    <string name="orange_buggy">Orange Punch Buggy</string>
+    <string name="yellow_buggy">Yellow Punch Buggy</string>
+    <string name="green_buggy">Green Punch Buggy</string>
+    <string name="blue_buggy">Blue Punch Buggy</string>
+    <string name="purple_buggy">Purple Punch Buggy</string>
+    <string name="pink_buggy">Pink Punch Buggy</string>
+    <string name="black_buggy">Black Punch Buggy</string>
+    <string name="white_buggy">White Punch Buggy</string>
+    <string name="silver_buggy">Silver Punch Buggy</string>
+    <string name="home_button">Home Button</string>
+    <string name="HOME">HOME</string>
+</resources>
