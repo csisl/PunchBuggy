@@ -11,22 +11,25 @@ class UserView : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_view)
-        val resultView: TextView = findViewById(R.id.redCount)
+        val redResultView: TextView = findViewById(R.id.redCount)
         val redBuddy: ImageButton = findViewById(R.id.redBuggy)
-        val homeButton: Button = findViewById(R.id.homeButton)
+        val orangeBuddy: ImageButton = findViewById(R.id.orangeBuggy)
+        val orangeResultView: TextView = findViewById(R.id.orangeCount)
 
-        // TODO: create a game somewhere, and THERE instantiate all of the punch buggies
         val red = PunchBuggy("red")
         redBuddy.setOnClickListener {
-            incrementBuggyCount(red, resultView)
+            incrementBuggyCount(red, redResultView)
         }
         redBuddy.setOnLongClickListener {
-            decrementBuggyCount(red, resultView)
+            decrementBuggyCount(red, redResultView)
         }
 
-        homeButton.setOnClickListener {
-            val homeIntent = Intent(this, MainActivity::class.java)
-            startActivity(homeIntent)
+        val orange = PunchBuggy("orange")
+        orangeBuddy.setOnClickListener {
+            incrementBuggyCount(orange, orangeResultView)
+        }
+        orangeBuddy.setOnLongClickListener {
+            decrementBuggyCount(orange, orangeResultView)
         }
 
     }
