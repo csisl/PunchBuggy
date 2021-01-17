@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         val toUserManagement: Button = findViewById(R.id.userManagment)
-        toUserManagement.setOnClickListener() {
+        toUserManagement.setOnClickListener {
             val toUserManagementView = Intent(this, UserManagement::class.java)
             startActivity(toUserManagementView)
         }
