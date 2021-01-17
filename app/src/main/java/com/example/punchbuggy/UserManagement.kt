@@ -16,15 +16,16 @@ class UserManagement : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_management)
         listView = findViewById(R.id.userListView)
-        var users = arrayOf(String)
+        var users: MutableList<String> = ArrayList()
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, users)
+        listView.adapter = adapter
 
         val addUserButton: Button = findViewById(R.id.addUser)
         addUserButton.setOnClickListener {
             val userName: EditText = findViewById(R.id.userNameEditText)
             val name = userName.getText().toString()
-//            users.add(name)
-
+            users.add(name)
+            adapter.notifyDataSetChanged()
 //            val player = Player(name)
 //            val toMain = Intent(this, MainActivity::class.java)
 //            toMain.putExtra("user", name)
