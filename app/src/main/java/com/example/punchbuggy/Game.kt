@@ -4,6 +4,18 @@ class Game {
 
     private var players: MutableList<Player> = mutableListOf()
 
+    fun getPlayers(): MutableList<Player> {
+        return players
+    }
+
+    fun getPlayerNames(): MutableList<String> {
+        val playerNames: MutableList<String> = mutableListOf()
+        for (player: Player in players) {
+            playerNames.add(player.username)
+        }
+        return playerNames
+    }
+
     fun addPlayer(player: Player) {
         players.add(player)
     }

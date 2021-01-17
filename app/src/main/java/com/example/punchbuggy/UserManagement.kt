@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ListView
+import com.google.gson.Gson
 
 class UserManagement : AppCompatActivity() {
 
@@ -16,7 +17,7 @@ class UserManagement : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_management)
         listView = findViewById(R.id.userListView)
-        var users: MutableList<String> = ArrayList()
+        val users: MutableList<String> = ArrayList()
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, users)
         listView.adapter = adapter
 
@@ -26,10 +27,11 @@ class UserManagement : AppCompatActivity() {
             val name = userName.getText().toString()
             users.add(name)
             adapter.notifyDataSetChanged()
-//            val player = Player(name)
-//            val toMain = Intent(this, MainActivity::class.java)
-//            toMain.putExtra("user", name)
-//            startActivity(toMain)
+            val player = Player(name)
+            val gson = Gson()
+            val toMain = Intent(this, MainActivity::class.java)
+            toMain.putExtra("player", gson.toJson(player))
+            startActivity(toMain)
         }
     }
 
