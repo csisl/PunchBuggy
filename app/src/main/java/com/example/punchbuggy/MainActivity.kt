@@ -2,10 +2,8 @@ package com.example.punchbuggy
 
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListView
@@ -15,17 +13,18 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var playerListView: ListView
     private lateinit var playerViewAdapter: ArrayAdapter<String>
+    private lateinit var runningGame: Game
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        readPreferences()
+
         // A game exists, so load the users into a list view
         if (savedInstanceState != null) {
             TODO()
         }
-
-        val runningGame = Game()
 
         val userObj = getIntent().getStringExtra("player")
         if (userObj != null) {
@@ -48,6 +47,46 @@ class MainActivity : AppCompatActivity() {
         toUser.setOnClickListener {
             val toUserView = Intent(this, UserView::class.java)
             startActivity(toUserView)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        readPreferences()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        writePreferences()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        writePreferences()
+    }
+
+    private fun readPreferences() {
+        val context = this@MainActivity
+        val sharedPref = context?.getPreferences(Context.MODE_PRIVATE)
+        val gameData = sharedPref.getString("game", "")
+        if (gameData != "") {
+            val gson = Gson()
+            runningGame = gson.fromJson(gameData, Game::class.java)
+            println(runningGame)
+            runningGame.displayScore()
+        } else {
+            runningGame = Game()
+        }
+    }
+
+    private fun writePreferences() {
+        val context = this@MainActivity
+        val sharedPref = context?.getPreferences(Context.MODE_PRIVATE)
+        with (sharedPref.edit()) {
+            val gson = Gson()
+            val gameData = gson.toJson(runningGame)
+            putString("game", gameData)
+            apply()
         }
     }
 }
