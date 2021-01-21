@@ -17,6 +17,8 @@ class UserManagement : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_management)
         listView = findViewById(R.id.userListView)
+
+        // display all of the users created
         val users: MutableList<String> = ArrayList()
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, users)
         listView.adapter = adapter
@@ -27,6 +29,9 @@ class UserManagement : AppCompatActivity() {
             val name = userName.getText().toString()
             users.add(name)
             adapter.notifyDataSetChanged()
+            // TODO: do we really need to make a player object here? can we
+            // just pass a list of strings for all of the names added?
+            // or maybe we should receive the Game object from the intent and add to it here
             val player = Player(name)
             val gson = Gson()
             val toMain = Intent(this, MainActivity::class.java)

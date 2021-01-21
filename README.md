@@ -5,5 +5,5 @@ Most people know the Punch Buggy game, but the score was kept in their head.
 
 Now you can keep score with the Punch Buggy app!
 
-Create users and keep track of how many puncy buggies they have seen
+Create users and keep track of how many punch buggies they have seen
 and the color they got. 
