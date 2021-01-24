@@ -19,18 +19,23 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        readPreferences()
+        //readPreferences()
+        runningGame = Game()
+
 
         // A game exists, so load the users into a list view
         if (savedInstanceState != null) {
             TODO()
         }
 
-        val userObj = getIntent().getStringExtra("player")
-        if (userObj != null) {
+        val gameIntent = getIntent().getStringExtra("runningGame")
+        if (gameIntent != null) {
             val gson = Gson()
-            val player = gson.fromJson(userObj, Player::class.java)
-            runningGame.addPlayer(player)
+            val game = gson.fromJson(gameIntent, Game::class.java)
+            val players = game.getPlayers()
+            for (player in players) {
+                runningGame.addPlayer(player)
+            }
         }
 
         playerListView = findViewById(R.id.playerListView)
@@ -39,8 +44,11 @@ class MainActivity : AppCompatActivity() {
 
         val toUserManagement: Button = findViewById(R.id.userManagment)
         toUserManagement.setOnClickListener {
-            val toUserManagementView = Intent(this, UserManagement::class.java)
-            startActivity(toUserManagementView)
+            val toUserManagementIntent = Intent(this, UserManagement::class.java)
+            val gson = Gson()
+            val gameIntentExtra = gson.toJson(runningGame)
+            toUserManagementIntent.putExtra("runningGame", gameIntentExtra)
+            startActivity(toUserManagementIntent)
         }
 
         val toUser: Button = findViewById(R.id.viewGames)
