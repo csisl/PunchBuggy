@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Button
@@ -21,24 +22,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         readPreferences()
-//        runningGame = Game()
-
-
-        // A game exists, so load the users into a list view
-        if (savedInstanceState != null) {
-            TODO()
-        }
 
         val gameIntent = getIntent().getStringExtra("runningGame")
         if (gameIntent != null) {
             val gson = Gson()
-            val game = gson.fromJson(gameIntent, Game::class.java)
-            val players = game.getPlayers()
-            for (player in players) {
-                runningGame.addPlayer(player)
-                Log.d("playerInstance", "player: ${player.username}")
-                Log.d("gameInstance", "Adding players to game instance: ${runningGame}")
-            }
+            runningGame = gson.fromJson(gameIntent, Game::class.java)
         }
 
         playerListView = findViewById(R.id.playerListView)
@@ -60,11 +48,6 @@ class MainActivity : AppCompatActivity() {
             val toUserView = Intent(this, UserView::class.java)
             startActivity(toUserView)
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        readPreferences()
     }
 
     override fun onPause() {
@@ -89,7 +72,7 @@ class MainActivity : AppCompatActivity() {
         if (gameData != "") {
             val gson = Gson()
             runningGame = gson.fromJson(gameData, Game::class.java)
-            Log.d("gameInstance", "Got Game isntance from shared preference ${runningGame}")
+            Log.d("gameInstance", "Got Game instance from shared preference ${runningGame}")
             println(runningGame)
             runningGame.displayScore()
         } else {
