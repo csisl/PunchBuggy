@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.util.Log
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListView
@@ -32,6 +33,16 @@ class MainActivity : AppCompatActivity() {
         playerListView = findViewById(R.id.playerListView)
         playerViewAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, runningGame.getPlayerNames())
         playerListView.adapter = playerViewAdapter
+
+        playerListView.setOnItemClickListener { parent, view, position, id ->
+            val clicked = playerViewAdapter.getItem(position).toString()
+            Log.d("clicked", "clicked: $clicked")
+            val player: Player = runningGame.getPlayer(clicked)
+            val playerIntent = Intent(this, UserView::class.java)
+            val playerGson = Gson().toJson(player)
+            playerIntent.putExtra("player", playerGson)
+            startActivity(playerIntent)
+        }
 
         val toUserManagement: Button = findViewById(R.id.userManagment)
         toUserManagement.setOnClickListener {
@@ -91,4 +102,5 @@ class MainActivity : AppCompatActivity() {
             apply()
         }
     }
+
 }

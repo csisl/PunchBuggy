@@ -8,6 +8,15 @@ class Game {
         return players
     }
 
+    fun getPlayer(name: String): Player {
+        for (player in players) {
+            if (name == player.username) {
+                return player
+            }
+        }
+        TODO()
+    }
+
     fun getPlayerNames(): MutableList<String> {
         val playerNames: MutableList<String> = mutableListOf()
         for (player: Player in players) {

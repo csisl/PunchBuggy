@@ -3,14 +3,21 @@ package com.example.punchbuggy
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
+import com.google.gson.Gson
 
 class UserView : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_view)
+
+        val playerData = getIntent().getStringExtra("player")
+        val gson = Gson()
+        val player = gson.fromJson(playerData, Player::class.java)
+
         val redResultView: TextView = findViewById(R.id.redCount)
         val redBuddy: ImageButton = findViewById(R.id.redBuggy)
         val orangeBuddy: ImageButton = findViewById(R.id.orangeBuggy)
