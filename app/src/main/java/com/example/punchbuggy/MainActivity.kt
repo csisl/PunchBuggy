@@ -30,6 +30,12 @@ class MainActivity : AppCompatActivity() {
             runningGame = gson.fromJson(gameIntent, Game::class.java)
         }
 
+        val playerIntent = getIntent().getStringExtra("player")
+        if (playerIntent != null) {
+            // TODO translate from gson
+            Log.d("player", "got player in main activity")
+        }
+
         playerListView = findViewById(R.id.playerListView)
         playerViewAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, runningGame.getPlayerNames())
         playerListView.adapter = playerViewAdapter

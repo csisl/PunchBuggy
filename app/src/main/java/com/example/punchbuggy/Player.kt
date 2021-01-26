@@ -2,6 +2,7 @@ package com.example.punchbuggy
 
 class Player constructor(val username: String){
 
+    // TODO: change to a hash map of some sort
     private var punchBuggies: MutableList<PunchBuggy> = mutableListOf()
     private val score: Score = Score()
 
@@ -16,7 +17,7 @@ class Player constructor(val username: String){
         }
     }
 
-    private fun getCurrentPunchBuggy(color: String): PunchBuggy {
+    fun getCurrentPunchBuggy(color: String): PunchBuggy {
         punchBuggies.forEach {
             if (it.color == color) {
                 return it

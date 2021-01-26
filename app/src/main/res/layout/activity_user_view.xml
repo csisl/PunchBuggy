@@ -1,64 +1,314 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true"
+    android:orientation="vertical">
 
-    <ImageButton
-        android:id="@+id/redBuggy"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="473dp"
-        android:background="@drawable/red"
-        android:contentDescription="@string/red_buggy"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.088" />
-
-    <TextView
-        android:id="@+id/redCount"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/redBuggy"
-        app:layout_constraintEnd_toEndOf="@+id/redBuggy"
-        app:layout_constraintStart_toStartOf="@+id/redBuggy"
-        app:layout_constraintTop_toTopOf="@+id/redBuggy"
-        app:layout_constraintVertical_bias="1.0"
-        tools:text="0" />
+        tools:context=".MainActivity">
 
-    <ImageButton
-        android:id="@+id/orangeBuggy"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:background="@drawable/orange"
-        android:contentDescription="@string/orange_buggy"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.827"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.079" />
+        <TextView
+            android:id="@+id/pinkCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/pinkBuggy"
+            app:layout_constraintEnd_toEndOf="@+id/pinkBuggy"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="@+id/pinkBuggy"
+            app:layout_constraintTop_toTopOf="@+id/pinkBuggy"
+            app:layout_constraintVertical_bias="0.991"
+            tools:text="0" />
 
-    <TextView
-        android:id="@+id/orangeCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/orangeBuggy"
-        app:layout_constraintEnd_toEndOf="@+id/orangeBuggy"
-        app:layout_constraintHorizontal_bias="0.489"
-        app:layout_constraintStart_toStartOf="@+id/orangeBuggy"
-        app:layout_constraintTop_toTopOf="@+id/orangeBuggy"
-        app:layout_constraintVertical_bias="1.0"
-        tools:text="0" />
+        <TextView
+            android:id="@+id/silverCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/silverBuggy"
+            app:layout_constraintEnd_toEndOf="@+id/silverBuggy"
+            app:layout_constraintHorizontal_bias="0.489"
+            app:layout_constraintStart_toStartOf="@+id/silverBuggy"
+            app:layout_constraintTop_toTopOf="@+id/silverBuggy"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="0" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/whiteCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/whiteBuggy"
+            app:layout_constraintEnd_toEndOf="@+id/whiteBuggy"
+            app:layout_constraintHorizontal_bias="0.489"
+            app:layout_constraintStart_toStartOf="@+id/whiteBuggy"
+            app:layout_constraintTop_toTopOf="@+id/whiteBuggy"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="0" />
+
+        <TextView
+            android:id="@+id/purpleCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/purpleBuggy"
+            app:layout_constraintEnd_toEndOf="@+id/purpleBuggy"
+            app:layout_constraintHorizontal_bias="0.489"
+            app:layout_constraintStart_toStartOf="@+id/purpleBuggy"
+            app:layout_constraintTop_toTopOf="@+id/purpleBuggy"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="0" />
+
+        <TextView
+            android:id="@+id/blueCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/blueBuggy"
+            app:layout_constraintEnd_toEndOf="@+id/blueBuggy"
+            app:layout_constraintHorizontal_bias="0.489"
+            app:layout_constraintStart_toStartOf="@+id/blueBuggy"
+            app:layout_constraintTop_toTopOf="@+id/blueBuggy"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="0" />
+
+        <ImageButton
+            android:id="@+id/silverBuggy"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/gray"
+            android:contentDescription="@string/silver_buggy"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.834"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.729" />
+
+        <ImageButton
+            android:id="@+id/pinkBuggy"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/pink"
+            android:contentDescription="@string/pink_buggy"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.042"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.731" />
+
+        <ImageButton
+            android:id="@+id/purpleBuggy"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/purple"
+            android:contentDescription="@string/purple_buggy"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.834"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.466" />
+
+        <ImageButton
+            android:id="@+id/blueBuggy"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/blue"
+            android:contentDescription="@string/blue_buggy"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.042"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.466" />
+
+        <ImageButton
+            android:id="@+id/greenBuggy"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/green"
+            android:contentDescription="@string/green_buggy"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.834"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.202" />
+
+        <ImageButton
+            android:id="@+id/redBuggy"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/red"
+            android:contentDescription="@string/red_buggy"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.042"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.006" />
+
+        <TextView
+            android:id="@+id/redCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/redBuggy"
+            app:layout_constraintEnd_toEndOf="@+id/redBuggy"
+            app:layout_constraintStart_toStartOf="@+id/redBuggy"
+            app:layout_constraintTop_toTopOf="@+id/redBuggy"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="0" />
+
+        <ImageButton
+            android:id="@+id/orangeBuggy"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@drawable/orange"
+            android:contentDescription="@string/orange_buggy"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.844"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.006" />
+
+        <TextView
+            android:id="@+id/orangeCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/orangeBuggy"
+            app:layout_constraintEnd_toEndOf="@+id/orangeBuggy"
+            app:layout_constraintHorizontal_bias="0.489"
+            app:layout_constraintStart_toStartOf="@+id/orangeBuggy"
+            app:layout_constraintTop_toTopOf="@+id/orangeBuggy"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="0" />
+
+        <ImageButton
+            android:id="@+id/yellowBuggy"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/yellow"
+            android:contentDescription="@string/yellow_buggy"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.042"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.203" />
+
+        <ImageButton
+            android:id="@+id/blackBuggy"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/black"
+            android:contentDescription="@string/black_buggy"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.042"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ImageButton
+            android:id="@+id/whiteBuggy"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/white"
+            android:contentDescription="@string/white_buggy"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.834"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/blackCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/blackBuggy"
+            app:layout_constraintEnd_toEndOf="@+id/blackBuggy"
+            app:layout_constraintHorizontal_bias="0.51"
+            app:layout_constraintStart_toStartOf="@+id/blackBuggy"
+            app:layout_constraintTop_toTopOf="@+id/blackBuggy"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="0" />
+
+        <TextView
+            android:id="@+id/yellowCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/yellowBuggy"
+            app:layout_constraintEnd_toEndOf="@+id/yellowBuggy"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="@+id/yellowBuggy"
+            app:layout_constraintTop_toTopOf="@+id/yellowBuggy"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="0" />
+
+        <TextView
+            android:id="@+id/greenCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/greenBuggy"
+            app:layout_constraintEnd_toEndOf="@+id/greenBuggy"
+            app:layout_constraintHorizontal_bias="0.489"
+            app:layout_constraintStart_toStartOf="@+id/greenBuggy"
+            app:layout_constraintTop_toTopOf="@+id/greenBuggy"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="0" />
+
+        <Button
+            android:id="@+id/homeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/HOME"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.005" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
