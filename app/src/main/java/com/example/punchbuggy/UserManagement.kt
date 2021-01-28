@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.ListView
 import com.google.gson.Gson
 
@@ -56,9 +57,8 @@ class UserManagement : AppCompatActivity() {
             userInput.setText("")
         }
 
-        // TODO: update to pass intents when back button is clicked
-        val toHomeButton: Button = findViewById(R.id.toHome)
-        toHomeButton.setOnClickListener {
+        val saveUsersButton: ImageButton = findViewById(R.id.saveUsers)
+        saveUsersButton.setOnClickListener {
             val gson = Gson()
             val toMain = Intent(this, MainActivity::class.java)
             toMain.putExtra("runningGame", gson.toJson(runningGame))
