@@ -8,6 +8,11 @@ class Game {
         return players
     }
 
+    fun updatePlayer(player: Player) {
+        removePlayer(player)
+        addPlayer(player)
+    }
+
     fun getPlayer(name: String): Player {
         for (player in players) {
             if (name == player.username) {
@@ -30,7 +35,12 @@ class Game {
     }
 
     fun removePlayer(player: Player) {
-        players.remove(player)
+        println("removing player: ${player.username}")
+        for (i in players.indices) {
+            if (players[i].username == player.username) {
+                players.removeAt(i)
+            }
+        }
     }
 
     fun incrementScore(player: Player, color: String) {

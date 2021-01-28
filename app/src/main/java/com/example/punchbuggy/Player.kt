@@ -17,13 +17,23 @@ class Player constructor(val username: String){
         }
     }
 
+    fun getScoreForColor(color: String): Int? {
+        punchBuggies.forEach {
+            if (it.color == color) {
+                return it.getCount()
+            }
+        }
+
+        return null
+    }
+
     fun getCurrentPunchBuggy(color: String): PunchBuggy {
         punchBuggies.forEach {
             if (it.color == color) {
                 return it
             }
         }
-        TODO("What do we return when the color doesn't match?")
+        TODO("Change to PunchBuggy? but also change the calls to this func")
     }
 
     fun addPoint(color: String) {

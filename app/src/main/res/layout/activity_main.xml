@@ -7,18 +7,6 @@
     tools:context=".UserView">
 
     <Button
-        android:id="@+id/viewGames"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/view_games"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.162" />
-
-    <Button
         android:id="@+id/userManagment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,8 +21,8 @@
     <ListView
         android:id="@+id/playerListView"
         android:layout_width="250dp"
-        android:layout_height="200dp"
-        android:background="#DAEEFF"
+        android:layout_height="300dp"
+        android:background="#F3F1FB"
         app:layout_constraintBottom_toTopOf="@+id/userManagment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"

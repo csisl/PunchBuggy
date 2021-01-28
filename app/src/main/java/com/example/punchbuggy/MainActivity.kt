@@ -30,12 +30,6 @@ class MainActivity : AppCompatActivity() {
             runningGame = gson.fromJson(gameIntent, Game::class.java)
         }
 
-        val playerIntent = getIntent().getStringExtra("player")
-        if (playerIntent != null) {
-            // TODO translate from gson
-            Log.d("player", "got player in main activity")
-        }
-
         playerListView = findViewById(R.id.playerListView)
         playerViewAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, runningGame.getPlayerNames())
         playerListView.adapter = playerViewAdapter
@@ -50,6 +44,13 @@ class MainActivity : AppCompatActivity() {
             startActivity(playerIntent)
         }
 
+        val playerIntent = getIntent().getStringExtra("player")
+        if (playerIntent != null) {
+            val updatedPlayer = Gson().fromJson(playerIntent, Player::class.java)
+            runningGame.updatePlayer(updatedPlayer)
+            Log.d("totalScore", "${runningGame.displayScore()}")
+        }
+
         val toUserManagement: Button = findViewById(R.id.userManagment)
         toUserManagement.setOnClickListener {
             val toUserManagementIntent = Intent(this, UserManagement::class.java)
@@ -58,12 +59,6 @@ class MainActivity : AppCompatActivity() {
             val gameIntentExtra = gson.toJson(runningGame)
             toUserManagementIntent.putExtra("runningGame", gameIntentExtra)
             startActivity(toUserManagementIntent)
-        }
-
-        val toUser: Button = findViewById(R.id.viewGames)
-        toUser.setOnClickListener {
-            val toUserView = Intent(this, UserView::class.java)
-            startActivity(toUserView)
         }
     }
 
@@ -90,8 +85,6 @@ class MainActivity : AppCompatActivity() {
             val gson = Gson()
             runningGame = gson.fromJson(gameData, Game::class.java)
             Log.d("gameInstance", "Got Game instance from shared preference ${runningGame}")
-            println(runningGame)
-            runningGame.displayScore()
         } else {
             runningGame = Game()
             Log.d("gameInstance", "Made new game instance in Main ${runningGame}")
