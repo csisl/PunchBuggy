@@ -36,6 +36,16 @@ class UserManagement : AppCompatActivity() {
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, users)
         listView.adapter = adapter
 
+        val removeUserButton: Button = findViewById(R.id.removeUser)
+        removeUserButton.setOnClickListener {
+            val userInput: EditText = findViewById(R.id.userNameEditText)
+            val name = userInput.getText().toString()
+            users.remove(name)
+            runningGame = removePlayerFromGame(name, runningGame)
+            adapter.notifyDataSetChanged()
+            userInput.setText("")
+        }
+
         val addUserButton: Button = findViewById(R.id.addUser)
         addUserButton.setOnClickListener {
             val userInput: EditText = findViewById(R.id.userNameEditText)
@@ -60,6 +70,11 @@ class UserManagement : AppCompatActivity() {
     private fun addPlayerToGame(username: String, runningGame: Game): Game {
         val player = Player(username)
         runningGame.addPlayer(player)
+        return runningGame
+    }
+
+    private fun removePlayerFromGame(username: String, runningGame: Game): Game {
+        runningGame.removePlayer(username)
         return runningGame
     }
 

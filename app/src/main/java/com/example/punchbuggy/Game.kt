@@ -43,6 +43,14 @@ class Game {
         }
     }
 
+    fun removePlayer(playerName: String) {
+        for (i in players.indices) {
+            if (players[i].username == playerName) {
+                players.removeAt(i)
+            }
+        }
+    }
+
     fun incrementScore(player: Player, color: String) {
         player.addPoint(color)
     }

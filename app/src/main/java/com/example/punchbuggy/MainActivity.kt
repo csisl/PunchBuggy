@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         playerViewAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, runningGame.getPlayerNames())
         playerListView.adapter = playerViewAdapter
 
-        playerListView.setOnItemClickListener { parent, view, position, id ->
+        playerListView.setOnItemClickListener { _, _, position, _ ->
             val clicked = playerViewAdapter.getItem(position).toString()
             Log.d("clicked", "clicked: $clicked")
             val player: Player = runningGame.getPlayer(clicked)
