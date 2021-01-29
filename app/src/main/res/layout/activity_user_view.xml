@@ -303,6 +303,7 @@
             android:layout_width="29dp"
             android:layout_height="31dp"
             android:background="@drawable/save"
+            android:contentDescription="@string/saveButton"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.958"

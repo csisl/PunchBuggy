@@ -17,4 +17,6 @@
     <string name="add_user">Add</string>
     <string name="remove_user">Remove</string>
     <string name="username_hint">username</string>
+    <string name="punchBuggiesLogo">Image of Punch Buggies</string>
+    <string name="saveButton">Save</string>
 </resources>

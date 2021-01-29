@@ -161,6 +161,9 @@ class UserView : AppCompatActivity() {
         blueResultView.setText(player.getScoreForColor("blue").toString())
         purpleResultView.setText(player.getScoreForColor("purple").toString())
         pinkResultView.setText(player.getScoreForColor("pink").toString())
+        silverResultView.setText(player.getScoreForColor("silver").toString())
+        whiteResultView.setText(player.getScoreForColor("white").toString())
+        blackResultView.setText(player.getScoreForColor("black").toString())
 
     }
 
