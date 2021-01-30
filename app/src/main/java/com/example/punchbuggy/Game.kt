@@ -22,6 +22,17 @@ class Game {
         TODO()
     }
 
+    fun hasPlayer(username: String): Boolean {
+        var inGame = false
+        for (name: String in getPlayerNames()) {
+            if (name == username) {
+                inGame = true
+                break
+            }
+        }
+        return inGame
+    }
+
     fun getPlayerNames(): MutableList<String> {
         val playerNames: MutableList<String> = mutableListOf()
         for (player: Player in players) {

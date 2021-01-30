@@ -71,4 +71,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.023" />
 
+    <TextView
+        android:id="@+id/userExistsWarning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/userExistsWarning"
+        android:textColor="#FF0000"
+        app:layout_constraintBottom_toTopOf="@+id/userNameEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="User already exists" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

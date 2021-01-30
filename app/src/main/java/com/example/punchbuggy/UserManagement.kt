@@ -4,23 +4,21 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.ListView
+import android.widget.*
 import com.google.gson.Gson
 
 class UserManagement : AppCompatActivity() {
 
     private lateinit var listView: ListView
     private lateinit var runningGame: Game
+    private lateinit var userExistsWarning: TextView
+    private lateinit var users: MutableList<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_management)
         listView = findViewById(R.id.userListView)
-        var users: MutableList<String> = mutableListOf()
+        users = mutableListOf()
 
         val gameIntent = getIntent().getStringExtra("runningGame")
 
@@ -51,7 +49,6 @@ class UserManagement : AppCompatActivity() {
         addUserButton.setOnClickListener {
             val userInput: EditText = findViewById(R.id.userNameEditText)
             val name = userInput.getText().toString()
-            users.add(name)
             runningGame = addPlayerToGame(name, runningGame)
             adapter.notifyDataSetChanged()
             userInput.setText("")
@@ -68,9 +65,25 @@ class UserManagement : AppCompatActivity() {
     }
 
     private fun addPlayerToGame(username: String, runningGame: Game): Game {
+        if (runningGame.hasPlayer(username)) {
+            displayUserExists(username)
+            return runningGame
+        }
         val player = Player(username)
         runningGame.addPlayer(player)
+        users.add(username)
+        clearUserExistsWarning()
         return runningGame
+    }
+
+    private fun displayUserExists(username: String) {
+        userExistsWarning = findViewById(R.id.userExistsWarning)
+        userExistsWarning.setText("User $username already exists!")
+    }
+
+    private fun clearUserExistsWarning() {
+        userExistsWarning = findViewById(R.id.userExistsWarning)
+        userExistsWarning.setText("")
     }
 
     private fun removePlayerFromGame(username: String, runningGame: Game): Game {
