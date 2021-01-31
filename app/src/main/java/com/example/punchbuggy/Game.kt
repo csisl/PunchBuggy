@@ -1,5 +1,7 @@
 package com.example.punchbuggy
 
+import android.util.Log
+
 class Game {
 
     private var players: MutableList<Player> = mutableListOf()
@@ -33,9 +35,14 @@ class Game {
         return inGame
     }
 
+    fun sortPlayers() {
+        players.sortByDescending { it.getTotalScore() }
+    }
+
     fun getPlayerNames(): MutableList<String> {
+        sortPlayers()
         val playerNames: MutableList<String> = mutableListOf()
-        for (player: Player in players) {
+        for (player in players) {
             playerNames.add(player.username)
         }
         return playerNames
@@ -49,7 +56,9 @@ class Game {
         println("removing player: ${player.username}")
         for (i in players.indices) {
             if (players[i].username == player.username) {
+                Log.d("removePlayer", "Removing player at index $i")
                 players.removeAt(i)
+                break
             }
         }
     }
@@ -58,6 +67,7 @@ class Game {
         for (i in players.indices) {
             if (players[i].username == playerName) {
                 players.removeAt(i)
+                break
             }
         }
     }

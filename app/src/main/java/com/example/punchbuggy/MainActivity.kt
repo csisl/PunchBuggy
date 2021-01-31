@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         if (gameIntent != null) {
             val gson = Gson()
             runningGame = gson.fromJson(gameIntent, Game::class.java)
+            writePreferences()
         }
 
         playerListView = findViewById(R.id.playerListView)
@@ -48,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         if (playerIntent != null) {
             val updatedPlayer = Gson().fromJson(playerIntent, Player::class.java)
             runningGame.updatePlayer(updatedPlayer)
-            Log.d("totalScore", "${runningGame.displayScore()}")
+            writePreferences()
         }
 
         val toUserManagement: Button = findViewById(R.id.userManagment)

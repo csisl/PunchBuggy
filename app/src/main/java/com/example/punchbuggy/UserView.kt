@@ -152,8 +152,6 @@ class UserView : AppCompatActivity() {
 
     private fun populateUserData(player: Player) {
 
-        Log.d("populateUserData", "Player current score for red: ${player.getScoreForColor("red")}")
-
         redResultView.setText(player.getScoreForColor("red").toString())
         orangeResultView.setText(player.getScoreForColor("orange").toString())
         yellowResultView.setText(player.getScoreForColor("yellow").toString())
