@@ -20,4 +20,27 @@
     <string name="punchBuggiesLogo">Image of Punch Buggies</string>
     <string name="saveButton">Save</string>
     <string name="userExistsWarning">User already exists!</string>
+    <string name="title_activity_help">Help</string>
+    <string name="icon">Icon</string>
+    <string name="help">Help</string>
+    <string name="how_to_play">HOW TO PLAY</string>
+
+    <string name="how_to_add">
+        To add points when a punchy buggy is seen, click on the color
+        of the punch buggy that was seen.
+    </string>
+
+    <string name="how_to_remove">
+        To remove points for a color, press down on the punch buggy until
+        the count decreases.
+    </string>
+
+    <string name="player_management">
+        Add or remove players from the User Management page.
+    </string>
+
+    <string name="thanks">
+        Thanks for playing!
+    </string>
+
 </resources>

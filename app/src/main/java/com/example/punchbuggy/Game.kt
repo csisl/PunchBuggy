@@ -53,7 +53,6 @@ class Game {
     }
 
     fun removePlayer(player: Player) {
-        println("removing player: ${player.username}")
         for (i in players.indices) {
             if (players[i].username == player.username) {
                 Log.d("removePlayer", "Removing player at index $i")

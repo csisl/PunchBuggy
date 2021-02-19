@@ -6,10 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.util.Log
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.ListView
+import android.widget.*
 import com.google.gson.Gson
 
 class MainActivity : AppCompatActivity() {
@@ -24,6 +21,10 @@ class MainActivity : AppCompatActivity() {
 
         readPreferences()
 
+        /*
+         *  Get the game intent from the UserManagement activity
+         *  This activity adds players to the current game
+         */
         val gameIntent = getIntent().getStringExtra("runningGame")
         if (gameIntent != null) {
             val gson = Gson()
@@ -45,11 +46,17 @@ class MainActivity : AppCompatActivity() {
             startActivity(playerIntent)
         }
 
+        /*
+         *  Get the updated player from the UserView and save it to the
+         *  running game instance
+         */
         val playerIntent = getIntent().getStringExtra("player")
         if (playerIntent != null) {
             val updatedPlayer = Gson().fromJson(playerIntent, Player::class.java)
             runningGame.updatePlayer(updatedPlayer)
             writePreferences()
+            runningGame.sortPlayers()
+            playerViewAdapter.notifyDataSetChanged()
         }
 
         val toUserManagement: Button = findViewById(R.id.userManagment)
@@ -60,6 +67,12 @@ class MainActivity : AppCompatActivity() {
             val gameIntentExtra = gson.toJson(runningGame)
             toUserManagementIntent.putExtra("runningGame", gameIntentExtra)
             startActivity(toUserManagementIntent)
+        }
+
+        val toHelp: ImageButton = findViewById(R.id.helpButton)
+        toHelp.setOnClickListener {
+            val toHelpIntent = Intent(this, Help::class.java)
+            startActivity(toHelpIntent)
         }
     }
 
