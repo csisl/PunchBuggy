@@ -4,6 +4,11 @@ abstract class Vehicle constructor(color: String) {
     abstract val color: String
     private var count: Int = 0
 
+    companion object Colors {
+        val colors: Array<String> = arrayOf("red", "orange", "yellow", "green", "blue",
+            "purple", "pink", "black", "white", "silver")
+    }
+
     open fun incrementCount() {
         count++
     }
@@ -17,9 +22,4 @@ abstract class Vehicle constructor(color: String) {
     }
 
     fun getCount(): Int = count
-
-    companion object Colors {
-        val colors: Array<String> = arrayOf("red", "orange", "yellow", "green", "blue",
-            "purple", "pink", "black", "white", "silver")
-    }
 }

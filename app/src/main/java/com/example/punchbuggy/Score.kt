@@ -4,10 +4,6 @@ class Score {
 
     private var totalScore: Int = 0
 
-    fun addPoint(color: String) {
-        incrementTotalScore()
-    }
-
     fun incrementTotalScore() {
         totalScore++
     }

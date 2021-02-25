@@ -11,7 +11,6 @@ import android.widget.TextView
 import com.google.gson.Gson
 
 class UserView : AppCompatActivity() {
-    // TODO: populate the text view of the different counts when first loaded
 
     private lateinit var player: Player
     private lateinit var redResultView: TextView
@@ -167,12 +166,12 @@ class UserView : AppCompatActivity() {
 
     private fun incrementBuggyCount(player: Player, color: String, resultView: TextView) {
         player.addPoint(color)
-        resultView.text = player.getCurrentPunchBuggy(color).getCount().toString()
+        resultView.text = player.getCurrentPunchBuggy(color)!!.getCount().toString()
     }
 
     private fun decrementBuggyCount(player: Player, color: String, resultView: TextView): Boolean {
-        player.getCurrentPunchBuggy(color).decrementCount()
-        resultView.text = player.getCurrentPunchBuggy(color).getCount().toString()
+        player.getCurrentPunchBuggy(color)?.decrementCount()
+        resultView.text = player.getCurrentPunchBuggy(color)!!.getCount().toString()
         return true
     }
 

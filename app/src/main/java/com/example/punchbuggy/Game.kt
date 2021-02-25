@@ -6,22 +6,18 @@ class Game {
 
     private var players: MutableList<Player> = mutableListOf()
 
-    fun getPlayers(): MutableList<Player> {
-        return players
-    }
-
     fun updatePlayer(player: Player) {
         removePlayer(player)
         addPlayer(player)
     }
 
-    fun getPlayer(name: String): Player {
+    fun getPlayer(name: String): Player? {
         for (player in players) {
             if (name == player.username) {
                 return player
             }
         }
-        TODO()
+        return null
     }
 
     fun hasPlayer(username: String): Boolean {

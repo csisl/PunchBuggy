@@ -4,10 +4,10 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
 import android.widget.*
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,7 +27,10 @@ class MainActivity : AppCompatActivity() {
          */
         val gameIntent = getIntent().getStringExtra("runningGame")
         if (gameIntent != null) {
-            val gson = Gson()
+            val adapter = RuntimeTypeAdapterFactory
+                    .of(Game::class.java).registerSubtype(Game::class.java)
+//            val gson = GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(adapter).create()
+            val gson = GsonBuilder().registerTypeAdapterFactory(adapter).create()
             runningGame = gson.fromJson(gameIntent, Game::class.java)
             writePreferences()
         }
@@ -39,7 +42,12 @@ class MainActivity : AppCompatActivity() {
         playerListView.setOnItemClickListener { _, _, position, _ ->
             val clicked = playerViewAdapter.getItem(position).toString()
             Log.d("clicked", "clicked: $clicked")
-            val player: Player = runningGame.getPlayer(clicked)
+            val player: Player? = runningGame.getPlayer(clicked)
+
+            if (null == player) {
+
+            }
+
             val playerIntent = Intent(this, UserView::class.java)
             val playerGson = Gson().toJson(player)
             playerIntent.putExtra("player", playerGson)

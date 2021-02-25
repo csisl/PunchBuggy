@@ -1,9 +1,10 @@
 package com.example.punchbuggy
 
+import android.util.Log
+
 class Player constructor(val username: String){
 
-    // TODO: change to a hash map of some sort
-    private var punchBuggies: MutableList<PunchBuggy> = mutableListOf()
+    private val punchBuggies: HashMap<String, PunchBuggy?> = HashMap(10)
     private var totalScore = 0
 
     init {
@@ -13,40 +14,29 @@ class Player constructor(val username: String){
     private fun initializePunchBuggies() {
         Vehicle.colors.forEach {
             val buggy = PunchBuggy(it)
-            punchBuggies.add(buggy)
+            punchBuggies[it] = buggy
         }
     }
 
     fun getScoreForColor(color: String): Int? {
-        punchBuggies.forEach {
-            if (it.color == color) {
-                return it.getCount()
-            }
-        }
-
-        return null
+        return punchBuggies[color]?.getCount()
     }
 
-    fun getCurrentPunchBuggy(color: String): PunchBuggy {
-        punchBuggies.forEach {
-            if (it.color == color) {
-                return it
-            }
-        }
-        TODO("Change to PunchBuggy? but also change the calls to this func")
+    fun getCurrentPunchBuggy(color: String): PunchBuggy? {
+        return punchBuggies[color]
     }
 
     fun addPoint(color: String) {
         totalScore++
-        getCurrentPunchBuggy(color).incrementCount()
+        getCurrentPunchBuggy(color)?.incrementCount()
     }
 
     fun removePoint(color: String) {
-        if (getCurrentPunchBuggy(color).getCount() > 0) {
-            getCurrentPunchBuggy(color).decrementCount()
+        if (getCurrentPunchBuggy(color)!!.getCount() > 0) {
+            getCurrentPunchBuggy(color)?.decrementCount()
             totalScore--
         } else {
-            println("Error: score is already at 0!")
+            Log.e("ScoreError", "Error: score is already at 0!")
         }
     }
 
@@ -56,8 +46,8 @@ class Player constructor(val username: String){
 
     fun displayTotalScore() {
         println("TOTAL SCORE: $totalScore")
-        punchBuggies.forEach {
-            println("${it.color}: ${it.getCount()}")
+        for ((color, vehicle) in punchBuggies) {
+            Log.d("Player","${color}: ${vehicle?.getCount()}")
         }
     }
 

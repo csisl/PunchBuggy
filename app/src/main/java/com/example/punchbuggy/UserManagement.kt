@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.*
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 
 class UserManagement : AppCompatActivity() {
 
@@ -56,9 +57,14 @@ class UserManagement : AppCompatActivity() {
 
         val saveUsersButton: ImageButton = findViewById(R.id.saveUsers)
         saveUsersButton.setOnClickListener {
-            val gson = Gson()
+//            val gson = Gson()
             val toMain = Intent(this, MainActivity::class.java)
-            toMain.putExtra("runningGame", gson.toJson(runningGame))
+            val adapter = RuntimeTypeAdapterFactory
+                    .of(Game::class.java).registerSubtype(Game::class.java)
+//            val gson = GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(adapter).create()
+            val gson = GsonBuilder().registerTypeAdapterFactory(adapter).create()
+            val gameGson = gson.toJson(runningGame, Game::class.java)
+            toMain.putExtra("runningGame", gameGson)
             startActivity(toMain)
         }
 
