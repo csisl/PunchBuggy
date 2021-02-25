@@ -2,6 +2,13 @@ package com.example.punchbuggy
 
 import android.util.Log
 
+/**
+ * A `Player` in the game that has their own score for vehicles.
+ *
+ * @param    username: The name of the user
+ * @property punchBuggies: A hash map mapping a color of a vehicle
+ *           to the instance of that vehicle.
+ */
 class Player constructor(val username: String){
 
     private val punchBuggies: HashMap<String, PunchBuggy?> = HashMap(10)
@@ -18,31 +25,34 @@ class Player constructor(val username: String){
         }
     }
 
-    fun getScoreForColor(color: String): Int? {
-        return punchBuggies[color]?.getCount()
-    }
+    /**
+     * @param color: the color of the punch buggy to get the score for
+     * @return: the current count for the provided color of a vehicle
+     */
+    fun getScoreForColor(color: String): Int? = punchBuggies[color]?.getCount()
 
-    fun getCurrentPunchBuggy(color: String): PunchBuggy? {
-        return punchBuggies[color]
-    }
+    /**
+     * @param color: the color of the punch buggy to grab the instance for
+     * @return: the punch buggy object for hte provided color
+     */
+    fun getCurrentPunchBuggy(color: String): PunchBuggy? = punchBuggies[color]
 
+    /** @param color: the color of the punch buggy to increment the count for */
     fun addPoint(color: String) {
         totalScore++
         getCurrentPunchBuggy(color)?.incrementCount()
     }
 
+    /** @param color: the color of the punch buggy to decrement the count for */
     fun removePoint(color: String) {
         if (getCurrentPunchBuggy(color)!!.getCount() > 0) {
             getCurrentPunchBuggy(color)?.decrementCount()
             totalScore--
-        } else {
-            Log.e("ScoreError", "Error: score is already at 0!")
         }
     }
 
-    fun getTotalScore(): Int {
-        return totalScore
-    }
+    /** @return the total score for the current player */
+    fun getTotalScore(): Int = totalScore
 
     fun displayTotalScore() {
         println("TOTAL SCORE: $totalScore")

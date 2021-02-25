@@ -27,27 +27,25 @@ class MainActivity : AppCompatActivity() {
          */
         val gameIntent = getIntent().getStringExtra("runningGame")
         if (gameIntent != null) {
+            // Because of the HashMap inside of the Player object, we need
+            // to create an Adapter for the serialization
             val adapter = RuntimeTypeAdapterFactory
                     .of(Game::class.java).registerSubtype(Game::class.java)
-//            val gson = GsonBuilder().setPrettyPrinting().registerTypeAdapterFactory(adapter).create()
             val gson = GsonBuilder().registerTypeAdapterFactory(adapter).create()
             runningGame = gson.fromJson(gameIntent, Game::class.java)
             writePreferences()
         }
 
+        // populate the main list view that shows all players
         playerListView = findViewById(R.id.playerListView)
         playerViewAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, runningGame.getPlayerNames())
         playerListView.adapter = playerViewAdapter
 
+        // a listener for the list of players, load the player page when clicked
         playerListView.setOnItemClickListener { _, _, position, _ ->
             val clicked = playerViewAdapter.getItem(position).toString()
             Log.d("clicked", "clicked: $clicked")
             val player: Player? = runningGame.getPlayer(clicked)
-
-            if (null == player) {
-
-            }
-
             val playerIntent = Intent(this, UserView::class.java)
             val playerGson = Gson().toJson(player)
             playerIntent.putExtra("player", playerGson)
@@ -67,6 +65,7 @@ class MainActivity : AppCompatActivity() {
             playerViewAdapter.notifyDataSetChanged()
         }
 
+        // Load the user management page
         val toUserManagement: Button = findViewById(R.id.userManagment)
         toUserManagement.setOnClickListener {
             val toUserManagementIntent = Intent(this, UserManagement::class.java)
@@ -77,6 +76,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(toUserManagementIntent)
         }
 
+        // load the help page
         val toHelp: ImageButton = findViewById(R.id.helpButton)
         toHelp.setOnClickListener {
             val toHelpIntent = Intent(this, Help::class.java)
@@ -99,9 +99,13 @@ class MainActivity : AppCompatActivity() {
         writePreferences()
     }
 
+    /*
+     * Read the shared preferences file and instantiate the runningGame
+     * variable that is an instance of the current game
+     */
     private fun readPreferences() {
         val context = this@MainActivity
-        val sharedPref = context?.getPreferences(Context.MODE_PRIVATE)
+        val sharedPref = context.getPreferences(Context.MODE_PRIVATE)
         val gameData = sharedPref.getString("game", "")
         if (gameData != "") {
             val gson = Gson()
@@ -113,9 +117,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /*
+     * Save the current state of the game by writing it to a
+     * shared preferences file
+     */
     private fun writePreferences() {
         val context = this@MainActivity
-        val sharedPref = context?.getPreferences(Context.MODE_PRIVATE)
+        val sharedPref = context.getPreferences(Context.MODE_PRIVATE)
         with (sharedPref.edit()) {
             val gson = Gson()
             val gameData = gson.toJson(runningGame)

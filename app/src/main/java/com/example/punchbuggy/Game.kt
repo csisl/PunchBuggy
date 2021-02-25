@@ -2,6 +2,7 @@ package com.example.punchbuggy
 
 import android.util.Log
 
+/** A `Game` object to keep track of all players. */
 class Game {
 
     private var players: MutableList<Player> = mutableListOf()
@@ -13,9 +14,7 @@ class Game {
 
     fun getPlayer(name: String): Player? {
         for (player in players) {
-            if (name == player.username) {
-                return player
-            }
+            if (name == player.username) return player
         }
         return null
     }
