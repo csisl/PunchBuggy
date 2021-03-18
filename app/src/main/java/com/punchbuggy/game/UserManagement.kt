@@ -1,9 +1,8 @@
-package com.example.punchbuggy
+package com.punchbuggy.game
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.*
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -28,10 +27,8 @@ class UserManagement : AppCompatActivity() {
             val gson = Gson()
             runningGame = gson.fromJson(gameIntent, Game::class.java)
             users = runningGame.getPlayerNames()
-            Log.d("usersAdd", "Users: ${users}")
         } else {
             runningGame = Game()
-            Log.d("gameInstance", "Made new game instance in management ${runningGame}")
         }
 
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, users)

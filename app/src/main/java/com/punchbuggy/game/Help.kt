@@ -1,4 +1,4 @@
-package com.example.punchbuggy
+package com.punchbuggy.game
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

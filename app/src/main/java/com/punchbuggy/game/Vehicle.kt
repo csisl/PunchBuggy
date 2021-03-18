@@ -1,4 +1,4 @@
-package com.example.punchbuggy
+package com.punchbuggy.game
 
 /**
  * An abstract class to manage vehicles

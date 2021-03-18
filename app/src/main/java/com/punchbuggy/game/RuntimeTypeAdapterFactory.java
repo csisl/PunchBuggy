@@ -1,4 +1,4 @@
-package com.example.punchbuggy;
+package com.punchbuggy.game;
 
 /*
  * Copyright (C) 2011 Google Inc.

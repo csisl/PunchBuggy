@@ -1,10 +1,9 @@
-package com.example.punchbuggy
+package com.punchbuggy.game
 
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.*
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -25,7 +24,7 @@ class MainActivity : AppCompatActivity() {
          *  Get the game intent from the UserManagement activity
          *  This activity adds players to the current game
          */
-        val gameIntent = getIntent().getStringExtra("runningGame")
+        val gameIntent = intent.getStringExtra("runningGame")
         if (gameIntent != null) {
             // Because of the HashMap inside of the Player object, we need
             // to create an Adapter for the serialization
@@ -44,7 +43,6 @@ class MainActivity : AppCompatActivity() {
         // a listener for the list of players, load the player page when clicked
         playerListView.setOnItemClickListener { _, _, position, _ ->
             val clicked = playerViewAdapter.getItem(position).toString()
-            Log.d("clicked", "clicked: $clicked")
             val player: Player? = runningGame.getPlayer(clicked)
             val playerIntent = Intent(this, UserView::class.java)
             val playerGson = Gson().toJson(player)
@@ -56,7 +54,7 @@ class MainActivity : AppCompatActivity() {
          *  Get the updated player from the UserView and save it to the
          *  running game instance
          */
-        val playerIntent = getIntent().getStringExtra("player")
+        val playerIntent = intent.getStringExtra("player")
         if (playerIntent != null) {
             val updatedPlayer = Gson().fromJson(playerIntent, Player::class.java)
             runningGame.updatePlayer(updatedPlayer)
@@ -70,7 +68,6 @@ class MainActivity : AppCompatActivity() {
         toUserManagement.setOnClickListener {
             val toUserManagementIntent = Intent(this, UserManagement::class.java)
             val gson = Gson()
-            Log.d("gameInstance", "Passing Game object to user management: ${runningGame}")
             val gameIntentExtra = gson.toJson(runningGame)
             toUserManagementIntent.putExtra("runningGame", gameIntentExtra)
             startActivity(toUserManagementIntent)
@@ -110,10 +107,8 @@ class MainActivity : AppCompatActivity() {
         if (gameData != "") {
             val gson = Gson()
             runningGame = gson.fromJson(gameData, Game::class.java)
-            Log.d("gameInstance", "Got Game instance from shared preference ${runningGame}")
         } else {
             runningGame = Game()
-            Log.d("gameInstance", "Made new game instance in Main ${runningGame}")
         }
     }
 

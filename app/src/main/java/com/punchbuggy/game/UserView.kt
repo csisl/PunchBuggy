@@ -1,11 +1,8 @@
-package com.example.punchbuggy
+package com.punchbuggy.game
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import com.google.gson.Gson
@@ -28,7 +25,7 @@ class UserView : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_view)
 
-        val playerData = getIntent().getStringExtra("player")
+        val playerData = intent.getStringExtra("player")
 
         if (playerData != null) {
             val gson = Gson()
@@ -151,16 +148,16 @@ class UserView : AppCompatActivity() {
 
     private fun populateUserData(player: Player) {
 
-        redResultView.setText(player.getScoreForColor("red").toString())
-        orangeResultView.setText(player.getScoreForColor("orange").toString())
-        yellowResultView.setText(player.getScoreForColor("yellow").toString())
-        greenResultView.setText(player.getScoreForColor("green").toString())
-        blueResultView.setText(player.getScoreForColor("blue").toString())
-        purpleResultView.setText(player.getScoreForColor("purple").toString())
-        pinkResultView.setText(player.getScoreForColor("pink").toString())
-        silverResultView.setText(player.getScoreForColor("silver").toString())
-        whiteResultView.setText(player.getScoreForColor("white").toString())
-        blackResultView.setText(player.getScoreForColor("black").toString())
+        redResultView.text = player.getScoreForColor("red").toString()
+        orangeResultView.text = player.getScoreForColor("orange").toString()
+        yellowResultView.text = player.getScoreForColor("yellow").toString()
+        greenResultView.text = player.getScoreForColor("green").toString()
+        blueResultView.text = player.getScoreForColor("blue").toString()
+        purpleResultView.text = player.getScoreForColor("purple").toString()
+        pinkResultView.text = player.getScoreForColor("pink").toString()
+        silverResultView.text = player.getScoreForColor("silver").toString()
+        whiteResultView.text = player.getScoreForColor("white").toString()
+        blackResultView.text = player.getScoreForColor("black").toString()
 
     }
 

@@ -1,20 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.punchbuggy">
+    package="com.punchbuggy.game"
+    android:versionName="@string/inital_release">
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/icon_circle"
         android:supportsRtl="true"
         android:theme="@style/Theme.PunchBuggy">
-        <activity android:name=".Help"></activity>
+        <activity android:name="com.punchbuggy.game.Help"
+            android:screenOrientation="portrait"
+            ></activity>
         <activity
-            android:name=".UserManagement"
-            android:windowSoftInputMode="adjustPan"></activity>
-        <activity android:name=".UserView" />
-        <activity android:name=".MainActivity">
+            android:name="com.punchbuggy.game.UserManagement"
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait"
+            ></activity>
+        <activity android:name="com.punchbuggy.game.UserView"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.punchbuggy.game.MainActivity"
+            android:screenOrientation="portrait"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

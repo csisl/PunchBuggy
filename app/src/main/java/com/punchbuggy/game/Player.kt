@@ -1,6 +1,4 @@
-package com.example.punchbuggy
-
-import android.util.Log
+package com.punchbuggy.game
 
 /**
  * A `Player` in the game that has their own score for vehicles.
@@ -53,12 +51,5 @@ class Player constructor(val username: String){
 
     /** @return the total score for the current player */
     fun getTotalScore(): Int = totalScore
-
-    fun displayTotalScore() {
-        println("TOTAL SCORE: $totalScore")
-        for ((color, vehicle) in punchBuggies) {
-            Log.d("Player","${color}: ${vehicle?.getCount()}")
-        }
-    }
 
 }

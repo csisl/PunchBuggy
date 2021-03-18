@@ -1,6 +1,4 @@
-package com.example.punchbuggy
-
-import android.util.Log
+package com.punchbuggy.game
 
 /** A `Game` object to keep track of all players. */
 class Game {
@@ -50,7 +48,6 @@ class Game {
     fun removePlayer(player: Player) {
         for (i in players.indices) {
             if (players[i].username == player.username) {
-                Log.d("removePlayer", "Removing player at index $i")
                 players.removeAt(i)
                 break
             }
@@ -74,12 +71,5 @@ class Game {
         player.removePoint(color)
     }
 
-    fun displayScore() {
-        players.forEach {
-            println("*-------${it.username}---------*")
-            println("${it.displayTotalScore()}")
-            println("*------------------------------------*")
-        }
-    }
 
 }

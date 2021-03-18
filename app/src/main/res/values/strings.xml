@@ -24,6 +24,7 @@
     <string name="icon">Icon</string>
     <string name="help">Help</string>
     <string name="how_to_play">HOW TO PLAY</string>
+    <string name="inital_release">Initial release</string>
 
     <string name="how_to_add">
         To add points when a punchy buggy is seen, click on the color
