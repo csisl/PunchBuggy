@@ -5,11 +5,11 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/icon"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/icon_circle"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.PunchBuggy">
+        android:theme="@style/Theme.PunchBuggy.NoActionBar">
         <activity android:name="com.punchbuggy.game.Help"
             android:screenOrientation="portrait"
             ></activity>

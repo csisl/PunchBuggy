@@ -18,4 +18,4 @@ along with its corresponding color.
   <img src="UserView.png" width="350" height="500">
 </p>
 
-Now on the [PlayStore!](https://play.google.com/store/apps/details?id=com.punchbuggy.game)
+Now on the [Play Store!](https://play.google.com/store/apps/details?id=com.punchbuggy.game)
