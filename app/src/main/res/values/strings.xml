@@ -13,9 +13,9 @@
     <string name="home_button">Home Button</string>
     <string name="HOME">HOME</string>
     <string name="view_games">View Games</string>
-    <string name="user_management">User Management</string>
-    <string name="add_user">Add</string>
-    <string name="remove_user">Remove</string>
+    <string name="user_management">USER MANAGEMENT</string>
+    <string name="add_user">ADD</string>
+    <string name="remove_user">REMOVE</string>
     <string name="username_hint">username</string>
     <string name="punchBuggiesLogo">Image of Punch Buggies</string>
     <string name="saveButton">Save</string>
