@@ -14,17 +14,18 @@ class MainActivity : AppCompatActivity() {
     private lateinit var playerViewAdapter: ArrayAdapter<String>
     private lateinit var runningGame: Game
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+    private fun getIntent(intentName: String): String? {
+        val intent = intent.getStringExtra(intentName)
+        return intent;
+    }
 
-        readPreferences()
-
-        /*
-         *  Get the game intent from the UserManagement activity
-         *  This activity adds players to the current game
-         */
-        val gameIntent = intent.getStringExtra("runningGame")
+    /**
+     * Save the current game by writing to the Shared Preferences
+     * file
+     *
+     * @param gameIntent: The intent of the running game
+     */
+    private fun saveGameInstance(gameIntent: String?) {
         if (gameIntent != null) {
             // Because of the HashMap inside of the Player object, we need
             // to create an Adapter for the serialization
@@ -34,26 +35,39 @@ class MainActivity : AppCompatActivity() {
             runningGame = gson.fromJson(gameIntent, Game::class.java)
             writePreferences()
         }
+    }
 
-        // populate the main list view that shows all players
+    /**
+     * Initialize the list view of all of the players in the
+     * current game
+     */
+    private fun initPlayerListView() {
         playerListView = findViewById(R.id.playerListView)
-        playerViewAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, runningGame.getPlayerNames())
+        playerViewAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1,
+                runningGame.getPlayerNames())
         playerListView.adapter = playerViewAdapter
+    }
 
-        // a listener for the list of players, load the player page when clicked
-        playerListView.setOnItemClickListener { _, _, position, _ ->
-            val clicked = playerViewAdapter.getItem(position).toString()
-            val player: Player? = runningGame.getPlayer(clicked)
-            val playerIntent = Intent(this, UserView::class.java)
-            val playerGson = Gson().toJson(player)
-            playerIntent.putExtra("player", playerGson)
-            startActivity(playerIntent)
-        }
+    /**
+     * Launch the Player Activity
+     *
+     * @param itemClicked: the string of the players
+     *   name that was selected
+     */
+    private fun toPlayerActivity(itemClicked: String) {
+        val player: Player? = runningGame.getPlayer(itemClicked)
+        val playerIntent = Intent(this, UserView::class.java)
+        val playerGson = Gson().toJson(player)
+        playerIntent.putExtra("player", playerGson)
+        startActivity(playerIntent)
+    }
 
-        /*
-         *  Get the updated player from the UserView and save it to the
-         *  running game instance
-         */
+    /**
+     * When there are changes made to the players in the current
+     * game, update the list on the main screen to reflect
+     * those changes
+     */
+    private fun updatePlayerListView() {
         val playerIntent = intent.getStringExtra("player")
         if (playerIntent != null) {
             val updatedPlayer = Gson().fromJson(playerIntent, Player::class.java)
@@ -62,22 +76,56 @@ class MainActivity : AppCompatActivity() {
             runningGame.sortPlayers()
             playerViewAdapter.notifyDataSetChanged()
         }
+    }
+
+    /**
+     * Load the User Management activity when the button
+     * is pressed. Pass the runningGame object to that
+     * activity so it can be updated
+     */
+    private fun toUserManagement() {
+        val toUserManagementIntent = Intent(this, UserManagement::class.java)
+        val gson = Gson()
+        val gameIntentExtra = gson.toJson(runningGame)
+        toUserManagementIntent.putExtra("runningGame", gameIntentExtra)
+        startActivity(toUserManagementIntent)
+    }
+
+    private fun toHelp() {
+        val toHelpIntent = Intent(this, Help::class.java)
+        startActivity(toHelpIntent)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        readPreferences()
+
+        val gameIntent = getIntent("runningGame")
+        saveGameInstance(gameIntent)
+
+        // initialize the main list view that shows all players
+        initPlayerListView()
+
+        // a listener for the list of players, load the player page when clicked
+        playerListView.setOnItemClickListener { _, _, position, _ ->
+            val clicked = playerViewAdapter.getItem(position).toString()
+            toPlayerActivity(clicked)
+        }
+
+        updatePlayerListView()
 
         // Load the user management page
         val toUserManagement: Button = findViewById(R.id.userManagment)
         toUserManagement.setOnClickListener {
-            val toUserManagementIntent = Intent(this, UserManagement::class.java)
-            val gson = Gson()
-            val gameIntentExtra = gson.toJson(runningGame)
-            toUserManagementIntent.putExtra("runningGame", gameIntentExtra)
-            startActivity(toUserManagementIntent)
+            toUserManagement()
         }
 
         // load the help page
         val toHelp: ImageButton = findViewById(R.id.helpButton)
         toHelp.setOnClickListener {
-            val toHelpIntent = Intent(this, Help::class.java)
-            startActivity(toHelpIntent)
+            toHelp()
         }
     }
 
